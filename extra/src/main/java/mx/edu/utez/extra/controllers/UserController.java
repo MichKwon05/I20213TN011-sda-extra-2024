@@ -37,7 +37,7 @@ public class UserController {
         );
     }
 
-    @GetMapping("/adult/{id}")
+    @GetMapping("/adultOne/{id}")
     public ResponseEntity<CustomResponse<User>> getOneAdult(@PathVariable Long id){
         return new ResponseEntity<>(
                 this.userService.getOneAdult(id),
