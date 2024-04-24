@@ -14,10 +14,13 @@ import java.time.LocalDate;
 public class UserDto {
 
     private Long id;
+    @NotEmpty(message = "Nombre no puede estar en blanco")
     @Size(max = 30, message = "Nombre máx 30 caracteres")
     private String username;
+    @NotEmpty(message = "Appellidos no puede estar en blanco")
     @Size(max = 30, message = "apellidos máx 30 caracteres")
     private String lastname;
+    @NotEmpty(message = "El email no puede estar en blanco")
     @Size(max = 50, message = "correo máx 50 caracteres")
     private String email;
     private LocalDate birthday;

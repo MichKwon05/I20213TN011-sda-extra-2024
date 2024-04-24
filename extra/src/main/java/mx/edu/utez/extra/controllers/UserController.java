@@ -37,6 +37,14 @@ public class UserController {
         );
     }
 
+    @GetMapping("/adult/{id}")
+    public ResponseEntity<CustomResponse<User>> getOneAdult(@PathVariable Long id){
+        return new ResponseEntity<>(
+                this.userService.getOneAdult(id),
+                HttpStatus.OK
+        );
+    }
+
     @PostMapping("/")
     public ResponseEntity<CustomResponse<User>> insert(UserDto dto, @Valid BindingResult result){
         if (result.hasErrors()){

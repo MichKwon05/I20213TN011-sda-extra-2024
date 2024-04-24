@@ -37,6 +37,27 @@ public class UserService {
         );
     }
 
+    //servicio para ver si es un usuario es mayor de edad usando el id
+    @Transactional(readOnly = true)
+    public CustomResponse<User> getOneAdult(Long id){
+        LocalDate eighteenYearsAgo = LocalDate.now().minusYears(18);
+        User user = userRepository.getById(id);
+        if (user.getBirthday().isBefore(eighteenYearsAgo)){
+            return new CustomResponse<>(
+                    user,
+                    false,
+                    200,
+                    "Usuario mayor de edad"
+            );
+        }else{
+            return new CustomResponse<>(
+                    null,
+                    true,
+                    400,
+                    "Usuario menor de edad"
+            );
+        }
+    }
 
     @Transactional(rollbackFor = {SQLException.class})
     public CustomResponse<User> save(User user){
@@ -60,6 +81,4 @@ public class UserService {
                 "Users con 18 años "
         );
     }
-
-
 }
